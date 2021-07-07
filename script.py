@@ -104,17 +104,17 @@ Eric Mcdaniel ;,;$29.70;,; green ;,; 09/15/17
 green&white;,;09/15/17,   Gail Phelps   ;,;$30.52   
 ;,; green&white&blue   ;,; 09/15/17 , Myrtle Morris 
 ;,;   $22.66   ;,; green&white&blue;,;09/15/17"""
-
+#clean up list
 daily_sales_replaced = daily_sales.replace(";,;", "~")
-# print(daily_sales_replaced)
+    # print(daily_sales_replaced)
 
 daily_transactions = daily_sales_replaced.split(",")
-# print(daily_transactions)
+    # print(daily_transactions)
 
 daily_transactions_split = []
 for item in daily_transactions:
   daily_transactions_split.append(item.split("~"))
-# print(daily_transactions_split)
+    # print(daily_transactions_split)
 
 transactions_clean = []
 for item in daily_transactions_split:
@@ -122,7 +122,7 @@ for item in daily_transactions_split:
   for iteration in item:
     holder.append(iteration.strip())
   transactions_clean.append(holder)
-# print(transactions_clean)
+    # print(transactions_clean)
 
 #split data into 3 different lists
 customers, sales, thread_sold = [], [], []
@@ -135,7 +135,32 @@ for category in transactions_clean:
 # print(sales)
 # print(thread_sold)
 
+#find total sales for current day
 total_sales = 0
 for item in sales:
   total_sales += float(item.strip("$"))
-print(total_sales)
+# print(total_sales)
+
+#clean up thread_sold list to remove "&"
+thread_sold_split = []
+for sold in thread_sold:
+  for color in sold.split("&"):
+    thread_sold_split.append(color)
+# print(thread_sold_split)
+
+#create function to count number of a certain thread sold
+def color_count(color):
+  count = 0
+  for item in thread_sold_split:
+    if item == color:
+      count += 1
+  return count
+# print(color_count("white"))
+
+colors = ['red','yellow','green','white','black','blue','purple']
+#printout test
+for color in colors:
+  print(
+    "Thread Shed sold {color_count} of {color} today.".format(color_count=color_count(color), color=color)
+  )
+  
