@@ -131,6 +131,11 @@ for category in transactions_clean:
   customers.append(category[0])
   sales.append(category[1])
   thread_sold.append(category[2])
-print(customers)
-print(sales)
-print(thread_sold)
+# print(customers)
+# print(sales)
+# print(thread_sold)
+
+total_sales = 0
+for item in sales:
+  total_sales += float(item.strip("$"))
+print(total_sales)
