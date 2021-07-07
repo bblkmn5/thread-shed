@@ -118,6 +118,19 @@ for item in daily_transactions:
 
 transactions_clean = []
 for item in daily_transactions_split:
+  holder = []
   for iteration in item:
-    transactions_clean.append(iteration.strip())
+    holder.append(iteration.strip())
+  transactions_clean.append(holder)
 # print(transactions_clean)
+
+#split data into 3 different lists
+customers, sales, thread_sold = [], [], []
+
+for category in transactions_clean:
+  customers.append(category[0])
+  sales.append(category[1])
+  thread_sold.append(category[2])
+print(customers)
+print(sales)
+print(thread_sold)
